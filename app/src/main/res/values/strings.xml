@@ -19,4 +19,7 @@
     <string name="password">Password</string>
     <string name="register_to_continue">Register to continue</string>
     <string name="user_name">User Name</string>
+    <string name="log_out">Log Out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

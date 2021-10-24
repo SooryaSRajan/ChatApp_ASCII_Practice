@@ -9,9 +9,13 @@
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/border_box_selected_.xml" value="0.1814814814814815" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/edit_text_selector.xml" value="0.22763157894736843" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22763157894736843" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_home.xml" value="0.20219298245614034" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_login.xml" value="0.25906735751295334" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_sign_up.xml" value="0.21403508771929824" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/fragment_chats_list.xml" value="0.20219298245614034" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/fragment_people_list.xml" value="0.21403508771929824" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/menu/home_menu.xml" value="0.21403508771929824" />
       </map>
     </option>
   </component>

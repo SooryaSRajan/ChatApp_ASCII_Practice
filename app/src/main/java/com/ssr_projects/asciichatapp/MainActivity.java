@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.ssr_projects.asciichatapp.Screens.Activities.HomeActivity;
 import com.ssr_projects.asciichatapp.Screens.Activities.LoginActivity;
 import com.ssr_projects.asciichatapp.Screens.Activities.SignUpActivity;
 
@@ -18,8 +21,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
+    }
 
-        //TODO: Redirect to home page if user credentials exists
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void loginPage(View view) {

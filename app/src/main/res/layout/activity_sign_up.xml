@@ -28,16 +28,18 @@
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:inputType="textCapWords"
+            android:id="@+id/user_name"
             android:layout_marginTop="40dp"
             android:background="@drawable/edit_text_selector"
             android:padding="10dp"
             android:hint="@string/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName" />
+            android:importantForAutofill="no"/>
 
         <EditText
+            android:id="@+id/email"
             android:layout_marginTop="20dp"
             android:background="@drawable/edit_text_selector"
             android:padding="10dp"
@@ -48,6 +50,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
+            android:id="@+id/password"
             android:background="@drawable/edit_text_selector"
             android:padding="10dp"
             android:hint="@string/password"
@@ -58,6 +61,7 @@
             android:inputType="textPassword" />
 
         <EditText
+            android:id="@+id/password_repeat"
             android:background="@drawable/edit_text_selector"
             android:padding="10dp"
             android:hint="@string/password"
