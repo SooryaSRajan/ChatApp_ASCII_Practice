@@ -1,5 +1,6 @@
 package com.ssr_projects.asciichatapp.Screens.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -69,10 +70,12 @@ public class PeopleListFragment extends Fragment {
 
         if (valueEventListener == null)
             valueEventListener = new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Log.d(TAG, "onDataChange: " + snapshot);
                     userModelArrayList.clear();
+                    adapter.notifyDataSetChanged();
                     for (DataSnapshot snap : snapshot.getChildren()) {
 
                         Log.d(TAG, "onDataChange: " + snap);
@@ -82,6 +85,7 @@ public class PeopleListFragment extends Fragment {
                         UserModel userModel = new UserModel();
 
                         if (!Objects.equals(snap.getKey(), FirebaseAuth.getInstance().getUid())) {
+                            Log.d(TAG, "onDataChange Matched: " + snap);
                             userModel.setUserId(snap.getKey());
                             userModel.setUserName((String) snap.child(USER_NAME_NODE).getValue());
                             userModel.setLastMessage("");

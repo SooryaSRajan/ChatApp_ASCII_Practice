@@ -39,10 +39,14 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        homePageFragmentModelArrayList = new ArrayList<>();
-        homePageFragmentModelArrayList.add(new HomePageFragmentModel(ChatsListFragment.newInstance(), "Chats"));
-        homePageFragmentModelArrayList.add(new HomePageFragmentModel(PeopleListFragment.newInstance(), "People"));
-        fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), 0, homePageFragmentModelArrayList);
+
+        if (homePageFragmentModelArrayList == null) {
+            homePageFragmentModelArrayList = new ArrayList<>();
+            homePageFragmentModelArrayList.add(new HomePageFragmentModel(ChatsListFragment.newInstance(), "Chats"));
+            homePageFragmentModelArrayList.add(new HomePageFragmentModel(PeopleListFragment.newInstance(), "People"));
+            fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), 0, homePageFragmentModelArrayList);
+        }
+
     }
 
     @Override
@@ -52,8 +56,11 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
 
-        viewPager.setAdapter(fragmentAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        if (viewPager.getAdapter() == null) {
+            viewPager.setAdapter(fragmentAdapter);
+            tabLayout.setupWithViewPager(viewPager);
+        }
+
 
     }
 

@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ASCIIChatApp">
         <activity
+            android:name=".Screens.Activities.ChatActivity"
+            android:exported="true" />
+        <activity
             android:name=".Screens.Activities.HomeActivity"
             android:exported="true" />
         <activity
