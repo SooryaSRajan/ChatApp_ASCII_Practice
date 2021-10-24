@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ssr_projects.asciichatapp.Screens.Activities.HomeActivity;
 import com.ssr_projects.asciichatapp.Screens.Activities.LoginActivity;
 import com.ssr_projects.asciichatapp.Screens.Activities.SignUpActivity;
@@ -15,6 +16,10 @@ import com.ssr_projects.asciichatapp.Screens.Activities.SignUpActivity;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+
+    static {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

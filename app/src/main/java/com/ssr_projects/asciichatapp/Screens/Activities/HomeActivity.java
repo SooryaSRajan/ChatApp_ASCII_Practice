@@ -40,8 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         homePageFragmentModelArrayList = new ArrayList<>();
-        homePageFragmentModelArrayList.add(new HomePageFragmentModel(PeopleListFragment.newInstance(), "People"));
         homePageFragmentModelArrayList.add(new HomePageFragmentModel(ChatsListFragment.newInstance(), "Chats"));
+        homePageFragmentModelArrayList.add(new HomePageFragmentModel(PeopleListFragment.newInstance(), "People"));
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), 0, homePageFragmentModelArrayList);
     }
 
