@@ -7,6 +7,9 @@
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/border_box.xml" value="0.22763157894736843" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/border_box_selected.xml" value="0.22763157894736843" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/border_box_selected_.xml" value="0.1814814814814815" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/box_left.xml" value="0.22763157894736843" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/box_right.xml" value="0.22763157894736843" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/chat_box_left.xml" value="0.22763157894736843" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/chat_edit_text_box.xml" value="0.22763157894736843" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/edit_text_selector.xml" value="0.22763157894736843" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.22763157894736843" />
@@ -16,6 +19,8 @@
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_login.xml" value="0.25906735751295334" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/activity_sign_up.xml" value="0.21403508771929824" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/chat_box_left.xml" value="0.21403508771929824" />
+        <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/chat_box_right.xml" value="0.21403508771929824" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/fragment_chats_list.xml" value="0.20219298245614034" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/fragment_people_list.xml" value="0.21403508771929824" />
         <entry key="..\:/AndroidStudioProjects/ASCIIChatApp/app/src/main/res/layout/user_card.xml" value="0.4" />

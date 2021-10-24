@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".Screens.Activities.SignUpActivity">
 
+    <ScrollView
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
     <LinearLayout
         android:padding="30dp"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
@@ -81,5 +86,6 @@
             android:layout_height="0dp"/>
 
     </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

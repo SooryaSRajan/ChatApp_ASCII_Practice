@@ -10,6 +10,7 @@ public class Constants {
     public static final String FRIEND_CHAT_KEY = "CHAT KEY";
     public static final String CHATS = "CHATS";
     public static final String DATE = "DATE";
+    public static final String TIME = "TIME";
     public static final String LAST_MESSAGE = "LAST MESSAGE";
 
 }

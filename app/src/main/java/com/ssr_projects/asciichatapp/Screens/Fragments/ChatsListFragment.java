@@ -76,7 +76,6 @@ public class ChatsListFragment extends Fragment {
                 .getReference()
                 .child(USER_NODE);
 
-        Log.d(TAG, "Chats references: " + databaseReference);
 
         databaseReference.keepSynced(true);
 
@@ -91,13 +90,14 @@ public class ChatsListFragment extends Fragment {
             userProfileEventListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.d(TAG, "onDataChange: User data: " + snapshot);
                     UserModel userModel = new UserModel();
 
                     String name = (String) snapshot.child(USER_NAME_NODE).getValue();
                     String userId = snapshot.getKey();
                     String date = (String) snapshot.child(DATE).getValue();
                     String lastMessage = (String) snapshot.child(LAST_MESSAGE).getValue();
+
+                    Log.d(TAG, "onDataChange: " + lastMessage);
 
                     if (date != null) {
                         userModel.setDate(date);
@@ -123,7 +123,9 @@ public class ChatsListFragment extends Fragment {
                         userModel.setUserId("");
                     }
 
-                    userModelArrayList.add(userModel);
+                    if(!userModelArrayList.contains(userModel)){
+                        userModelArrayList.add(userModel);
+                    }
                     adapter.notifyItemInserted(userModelArrayList.size() - 1);
                 }
 
@@ -143,7 +145,6 @@ public class ChatsListFragment extends Fragment {
                     adapter.notifyDataSetChanged();
 
                     for (DataSnapshot snap : snapshot.getChildren()) {
-                        Log.d(TAG, "onDataChange: Loop " + snap.getKey());
                         userDataReference.child(Objects.requireNonNull(snap.getKey()))
                                 .addListenerForSingleValueEvent(userProfileEventListener);
                     }

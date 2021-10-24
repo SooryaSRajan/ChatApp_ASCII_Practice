@@ -3,11 +3,16 @@ package com.ssr_projects.asciichatapp.Screens.Activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -15,17 +20,25 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ssr_projects.asciichatapp.Models.ChatModel;
 import com.ssr_projects.asciichatapp.R;
+import com.ssr_projects.asciichatapp.Utils.ChatRecyclerAdapter;
 
+import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.Objects;
 
 import static com.ssr_projects.asciichatapp.Utils.Constants.CHATS;
+import static com.ssr_projects.asciichatapp.Utils.Constants.DATE;
 import static com.ssr_projects.asciichatapp.Utils.Constants.FRIENDS_NODE;
 import static com.ssr_projects.asciichatapp.Utils.Constants.FRIEND_CHAT_KEY;
+import static com.ssr_projects.asciichatapp.Utils.Constants.LAST_MESSAGE;
 import static com.ssr_projects.asciichatapp.Utils.Constants.RECEIVER_ID;
 import static com.ssr_projects.asciichatapp.Utils.Constants.RECEIVER_NAME;
+import static com.ssr_projects.asciichatapp.Utils.Constants.TIME;
 import static com.ssr_projects.asciichatapp.Utils.Constants.USER_NODE;
+import static com.ssr_projects.asciichatapp.Utils.DateTime.getCurrentDate;
+import static com.ssr_projects.asciichatapp.Utils.DateTime.getCurrentTime;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -45,10 +58,24 @@ public class ChatActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getName();
 
+    RecyclerView recyclerView;
+    ChatRecyclerAdapter adapter;
+    ArrayList<ChatModel> chatModelArrayList;
+
+    EditText chatTextBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        chatTextBox = findViewById(R.id.chat_edit_box);
+        recyclerView = findViewById(R.id.recycler_view);
+        chatModelArrayList = new ArrayList<>();
+        adapter = new ChatRecyclerAdapter(chatModelArrayList);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         intent = getIntent();
         receiverUserName = intent.getStringExtra(RECEIVER_NAME);
@@ -83,7 +110,15 @@ public class ChatActivity extends AppCompatActivity {
             chatListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    chatModelArrayList.clear();
+                    adapter.notifyDataSetChanged();
 
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        chatModelArrayList.add(snap.getValue(ChatModel.class));
+                        adapter.notifyItemInserted(chatModelArrayList.size() - 1);
+                        recyclerView.smoothScrollToPosition(chatModelArrayList.size() - 1);
+
+                    }
                 }
 
                 @Override
@@ -173,6 +208,46 @@ public class ChatActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         chatReference.removeEventListener(chatListener);
+    }
 
+    public void sendMessage(View view) {
+        String message = chatTextBox.getText().toString();
+        if (message.isEmpty()) {
+            Toast.makeText(ChatActivity.this, "Message empty!", Toast.LENGTH_SHORT).show();
+        } else {
+            ChatModel chatModel = new ChatModel();
+            chatModel.setDate(getCurrentDate());
+            chatModel.setTime(getCurrentTime());
+            chatModel.setMessage(message);
+            chatModel.setSenderId(FirebaseAuth.getInstance().getUid());
+            chatModel.setReceiverId(receiverUserId);
+            chatReference.push().setValue(chatModel);
+            chatTextBox.setText("");
+            databaseReference.child(USER_NODE)
+                    .child(Objects.requireNonNull(firebaseAuth.getUid()))
+                    .child(LAST_MESSAGE)
+                    .setValue(message);
+
+            databaseReference.child(USER_NODE)
+                    .child(receiverUserId)
+                    .child(LAST_MESSAGE)
+                    .setValue(message);
+
+            chatIdConfigurationReference
+                    .child(DATE)
+                    .setValue(getCurrentDate());
+
+            chatIdConfigurationReceiverUserReference
+                    .child(DATE)
+                    .setValue(getCurrentDate());
+
+            chatIdConfigurationReference
+                    .child(TIME)
+                    .setValue(getCurrentTime());
+
+            chatIdConfigurationReceiverUserReference
+                    .child(TIME)
+                    .setValue(getCurrentTime());
+        }
     }
 }
